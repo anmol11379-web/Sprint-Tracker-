@@ -1,6 +1,6 @@
 # Android Club Task List
 
-A full-stack Task List web application built with **React (Vite + Tailwind CSS)**, **Node.js + Express**, and **MongoDB (Mongoose)**. Styled with the dark obsidian, neon orange (`#ff7300`), and Android green (`#3DDC84`) visual identity of [androidclub.tech](https://androidclub.tech).
+A full-stack Task List web application built with React (Vite + Tailwind CSS), Node.js + Express, and MongoDB. Styled with the dark obsidian, neon orange , and Android green visual identity of [androidclub.tech](https://androidclub.tech).
 
 ---
 
