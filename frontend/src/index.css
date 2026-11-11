@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0A090F;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  /* Custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A090F;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #404040;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(0.75);
+    opacity: 0.55;
+  }
+}
+
+/* Signature Android Club navbar 4-dot square reticle */
+.square-container {
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.dot-line {
+  background-color: #f97316;
+  border-radius: 9999px;
+  position: absolute;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: 4s ease-in-out infinite dot-pulse;
+}
+
+.group:hover .dot-line {
+  border-radius: 2px;
+  background-color: #3DDC84;
+  animation: none;
+}
+
+@keyframes clubBgBlink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Subtle architectural grid backdrop matching androidclub.tech */
+.club-grid-bg {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 115, 0, 0.08), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(61, 220, 132, 0.07), transparent 45%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+.club-bg-blink {
+  animation: clubBgBlink 4s ease-in-out infinite;
+}
+
+/* Smooth tactile button, sweep-sheen, and card hover transitions */
+.btn-smooth {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.btn-smooth:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-smooth:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn-sweep:hover:not(:disabled)::after {
+  transform: translateX(320%) skewX(-20deg);
+}
+
+.card-smooth {
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease,
+    background-color 240ms ease,
+    box-shadow 260ms ease,
+    opacity 200ms ease;
+}
+
+.card-smooth:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club-bg-blink {
+    animation: none;
+    opacity: 0.65;
+  }
+
+  .btn-smooth,
+  .card-smooth,
+  .btn-sweep::after {
+    transition: none;
+  }
+
+  .btn-smooth:hover:not(:disabled),
+  .card-smooth:hover {
+    transform: none;
+  }
+}
+
+@layer utilities {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A090F];
+  }
+}
