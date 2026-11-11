@@ -8,11 +8,11 @@ A full-stack Task List web application built with **React (Vite + Tailwind CSS)*
 
 | Service | Platform | URL |
 | --- | --- | --- |
-| **Frontend App** | Vercel | `https://android-club-task-list.vercel.app` *(update after deploying)* |
-| **Backend REST API** | Render / Railway | `https://android-club-task-api.onrender.com/api` *(update after deploying)* |
-| **API Health Check** | Render / Railway | `https://android-club-task-api.onrender.com/api/health` |
+| **Frontend App** | Netlify | [https://sprint-tracker-task-app.netlify.app/](https://sprint-tracker-task-app.netlify.app/) |
+| **Backend REST API** | Render | [https://sprint-tracker-api-zism.onrender.com/api](https://sprint-tracker-api-zism.onrender.com/api) |
+| **API Health Check** | Render | [https://sprint-tracker-api-zism.onrender.com/api/health](https://sprint-tracker-api-zism.onrender.com/api/health) |
 
-> See [Deployment Guide](#8-deployment-guide) below for step-by-step instructions to deploy your own instance on Render/Railway and Vercel.
+> See [Deployment Guide](#8-deployment-guide) below for step-by-step instructions for deploying on Render, MongoDB Atlas, and Netlify.
 
 ---
 
@@ -277,22 +277,23 @@ curl -X DELETE http://localhost:5000/api/tasks/<TASK_ID>
 
 ## 8. Deployment Guide
 
-### Backend on Render or Railway
-1. Create a new Web Service connected to this repository with **Root Directory** set to `backend`.
-2. **Build Command:** `npm install`
-3. **Start Command:** `npm start`
-4. Add environment variables:
+### Backend on Render + MongoDB Atlas
+1. Create a free MongoDB Atlas cluster, add a database user, allow network access (`0.0.0.0/0` for Render), and copy the connection string.
+2. Create a new Render Web Service connected to this repository with **Root Directory** set to `backend`.
+3. **Build Command:** `npm install`
+4. **Start Command:** `npm start`
+5. Add environment variables:
    - `NODE_ENV=production`
    - `MONGODB_URI=<your-mongodb-atlas-uri>`
-   - `CORS_ORIGIN=https://<your-vercel-domain>.vercel.app`
-5. Confirm `GET /api/health` returns `200 OK`.
+   - `CORS_ORIGIN=https://<your-netlify-site>.netlify.app`
+6. Confirm `GET /api/health` returns `200 OK`.
 
-### Frontend on Vercel
-1. Import the repository into Vercel and set **Root Directory** to `frontend`.
-2. **Framework Preset:** `Vite` (`npm run build`, output directory `dist`).
+### Frontend on Netlify
+1. Import the repository into Netlify and set **Base directory** to `frontend`.
+2. **Build command:** `npm run build` | **Publish directory:** `frontend/dist`
 3. Add environment variable:
-   - `VITE_API_URL=https://<your-backend-domain>/api`
-4. Deploy and ensure `CORS_ORIGIN` on the backend matches your Vercel URL.
+   - `VITE_API_URL=https://<your-render-service>.onrender.com/api`
+4. Trigger a deploy and ensure `CORS_ORIGIN` on Render matches your Netlify URL (without a trailing slash).
 
 ---
 
