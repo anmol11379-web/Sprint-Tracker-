@@ -44,13 +44,13 @@ A full-stack Task List web application built with React (Vite + Tailwind CSS), N
 
 Saved in [`docs/screenshots/`](./docs/screenshots/):
 
-### Desktop View (`1440×900`)
+### Desktop View
 ![Desktop View](./docs/screenshots/desktop.png)
 
 ### Edit Task Modal
 ![Edit Task Modal](./docs/screenshots/edit-modal.png)
 
-### Mobile View (`390×844`)
+### Mobile View 
 ![Mobile View](./docs/screenshots/mobile.png)
 
 ---
